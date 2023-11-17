@@ -1,0 +1,52 @@
+<ion-header mode="md" class="rick">
+  <ion-toolbar class="rick">
+    <ion-title><div>
+      Rick & Morty Api
+    </div></ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content mode="ios" class="rick">
+  <div class="glass-content">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="d-flex-center" size="12">
+          <ion-searchbar placeholder="Buscar personajes" [(ngModel)]="params.name" (ionInput)="searchCharacters()" [debounce]="250"></ion-searchbar>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+        <ion-col routerLink="/detalle-personaje/{{c.id}}" *ngFor="let c of characters" size-lg="6" size-md="6" size-sm="12" size="12">
+          
+          <ion-card class="rick">
+          
+            <ion-grid>
+              
+              <ion-row>
+                <ion-col class="ion-padding" size-lg="4" size-md="4" size-sm="4" size="12">
+                  <ion-avatar>
+                    <img [src]="c.image" />
+                  </ion-avatar>
+                </ion-col>
+                <ion-col class="ion-padding" size-lg="8" size-md="8" size-sm="8" size="12">
+                  <div class="name">{{c.name}}</div>
+                  <p>Primera aparición en: <br> <strong>{{c.origin.name}}</strong></p>
+                  <p>Última aparición en: <br> <strong>{{c.location.name}}</strong></p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+  <ion-infinite-scroll threshold="25%" position="bottom" (ionInfinite)="getCharacters($event)">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
+  </div>
+</ion-content>

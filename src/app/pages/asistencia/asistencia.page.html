@@ -1,0 +1,98 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title style="font-weight: 600;">
+      RegistrAPP 
+    </ion-title>
+    <ion-button slot="end" fill="clear" (click)="cerrar()" style="color: aliceblue;">Salir</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="background-container">
+  <div class="contenedorMain">
+  <ion-card class="cont1">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">RegistrAPP</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <div class="container">
+    <h1 class="homeTitle">Bienvenido!</h1>
+<br>
+
+<br>
+    <h1 class="homeTitle2">Información Adicional</h1>
+<br><br>
+
+<h6>Ingresa tu datos para completar el registro de asistencia</h6>
+
+<ion-item>
+  <label for="">Nombre</label>
+  <ion-input type="string"
+  [(ngModel)]="nombre"
+    class="input-name" required  maxlength="10"
+  ></ion-input>
+  
+</ion-item>
+
+<br>
+
+<ion-item>
+  <label for="">Apellido</label>
+  <ion-input type="string"
+  [(ngModel)]="apellido"
+    class="input-name" required  maxlength="10" 
+  ></ion-input>
+  
+</ion-item>
+<br>
+<ion-item>
+  <label for="labelNE">Escuelas</label>
+  <ion-select label="Seleccione Escuela" label-placement="floating" fill="outline" class="input-opt" [(ngModel)]="NE">
+    <ion-select-option value="Administración y Negocios">Administración y Negocios</ion-select-option>
+    <ion-select-option value="Comunicación">Comunicación</ion-select-option>
+    <ion-select-option value="Construcción">Construcción</ion-select-option>
+    <ion-select-option value="Diseño">Diseño</ion-select-option>
+    <ion-select-option value="Gastronomía">Gastronomía</ion-select-option>
+    <ion-select-option value="Informática y Telecomunicaciones">Informática y Telecomunicaciones</ion-select-option>
+    <ion-select-option value="Ingeniería y Recursos Naturales">Ingeniería y Recursos Naturales</ion-select-option>
+    <ion-select-option value="Salud">Salud</ion-select-option>
+    <ion-select-option value="Turismo y Hotelería">Turismo y Hotelería</ion-select-option>
+
+  </ion-select>
+</ion-item>
+
+<br>
+
+
+<ion-item>
+  <label for="rut" class="alumno">Rut Alumno</label>
+  <ion-input type="text" class="input-opt" [(ngModel)]="rut" required minlength="10" maxlength="10"></ion-input>
+</ion-item>
+
+<br>
+
+
+ <div class="container-btn">
+  <ion-button type="reset" color="danger" class="btn" (click)="clearC()" >Limpiar</ion-button>
+  <ion-button id="present-alert" type="submit"  class="btn2" >Mostrar</ion-button>
+  <ion-alert
+  trigger="present-alert"
+  header="Alumno"
+  subHeader="Su nombre es: {{nombre}} {{apellido}}"
+  message="Su rut es: {{rut}}"
+  [buttons]="alertButtons"
+></ion-alert>
+ </div>
+
+
+  </div>
+</ion-card>
+
+<div class="button" >
+  <ion-button type="submit" class="button" (click)="continuar()">Continuar</ion-button>
+  </div>
+</div>
+
+</ion-content>

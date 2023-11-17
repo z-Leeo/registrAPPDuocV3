@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title slot="start">
+      Inicio
+    </ion-title>
+    <ion-button slot="end" fill="clear" (click)="signOut()" style="color: aliceblue;">Salir</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<div class="contenedorMain">
+
+  <ion-content [fullscreen]="true" >
+    <div id="container">
+      <h1>Bienvenido</h1>
+      <strong>{{email}}</strong>
+    </div>
+
+    <ion-grid >
+      <ion-row class="row">
+        
+      </ion-row >
+      <ion-row class="row">
+        <ion-col>
+          {{code}}
+          <ion-button [routerLink]="['/intro']">Rick & Morty API</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row class="row">
+        <ion-col>
+          <ion-button [routerLink]="['/asistencia']">Registrar Asistencia</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</div>

@@ -1,0 +1,58 @@
+
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">
+      RegistrAPP
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="ion-text-center">
+    <ion-img src="assets/duoc.png" alt="RegistrAPP Logo" class="logo"></ion-img>
+  </div>
+
+  <swiper-container
+  scrollY="false"
+  #swiper
+    (afterinit)="swiperReady()"
+    (slidechange)="swiperSlideChanged($event)"
+    [loop]="true"
+    [pagination]="true">
+    <swiper-slide *ngFor="let image of image">
+      <div class="swiper-zoom-container">
+        <img [src]="image">
+      </div>
+    </swiper-slide>
+  </swiper-container>
+  <ion-card class="welcome-card">
+
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">
+        ¡Bienvenido a RegistrAPP!
+      </ion-card-title>
+    </ion-card-header>
+
+
+    <ion-card-content>
+      <p>Ingresa para Poder Manejar de forma mas optima la asistencia de Duoc UC</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button expand="block" color="warning" routerLink="/signup">Registrarse</ion-button>
+  <ion-button expand="block" color="primary" routerLink="/login">Iniciar Sesión</ion-button>
+
+
+  <div class="redesS">
+    <a href="https://web.facebook.com/DuocUC.PlazaVespucio"><ion-icon name="logo-facebook" class="redes"></ion-icon></a>
+    <a href="https://www.instagram.com/duoc_plazavespucio/"><ion-icon name="logo-instagram" class="redesI"></ion-icon></a>
+    <a href="https://twitter.com/DuocUC"><ion-icon name="logo-twitter" class="redes"></ion-icon></a>
+  
+  </div>
+  
+  <ion-fab  vertical="bottom" horizontal="end" style="margin-bottom: 30px;" >
+    <ion-fab-button [routerLink]="['/login']"  >
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
