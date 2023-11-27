@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "registrappduocv3"
+  },
+  "targets": {
+    "registrappduocv3": {
+      "hosting": {
+        "app": [
+          "registrappduocv3"
+        ]
+      }
+    }
+  }
+}

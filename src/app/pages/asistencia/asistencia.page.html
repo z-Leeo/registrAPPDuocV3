@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="background-container">
+<form  [formGroup]="formularioA" (ngSubmit)="continuar()" class="background-container" >
   <div class="contenedorMain">
   <ion-card class="cont1">
   <ion-header collapse="condense">
@@ -30,7 +30,7 @@
 <ion-item>
   <label for="">Nombre</label>
   <ion-input type="string"
-  [(ngModel)]="nombre"
+  formControlName="nombre"
     class="input-name" required  maxlength="10"
   ></ion-input>
   
@@ -41,7 +41,7 @@
 <ion-item>
   <label for="">Apellido</label>
   <ion-input type="string"
-  [(ngModel)]="apellido"
+  formControlName="apellido"
     class="input-name" required  maxlength="10" 
   ></ion-input>
   
@@ -49,7 +49,7 @@
 <br>
 <ion-item>
   <label for="labelNE">Escuelas</label>
-  <ion-select label="Seleccione Escuela" label-placement="floating" fill="outline" class="input-opt" [(ngModel)]="NE">
+  <ion-select label="Seleccione Escuela" label-placement="floating" fill="outline" class="input-opt" formControlName="NE">
     <ion-select-option value="Administración y Negocios">Administración y Negocios</ion-select-option>
     <ion-select-option value="Comunicación">Comunicación</ion-select-option>
     <ion-select-option value="Construcción">Construcción</ion-select-option>
@@ -68,7 +68,7 @@
 
 <ion-item>
   <label for="rut" class="alumno">Rut Alumno</label>
-  <ion-input type="text" class="input-opt" [(ngModel)]="rut" required minlength="10" maxlength="10"></ion-input>
+  <ion-input type="text" class="input-opt" formControlName="rut" required minlength="10" maxlength="10"></ion-input>
 </ion-item>
 
 <br>
@@ -95,4 +95,4 @@
   </div>
 </div>
 
-</ion-content>
+</form>

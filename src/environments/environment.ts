@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-    apiKey: "AIzaSyDpOT5kWG6H3BS8PMOa7jdz79WhTVYK9yQ",
-    authDomain: "registrappduoc-72224.firebaseapp.com",
-    projectId: "registrappduoc-72224",
-    storageBucket: "registrappduoc-72224.appspot.com",
-    messagingSenderId: "626739716761",
-    appId: "1:626739716761:web:5020f6436b3970ccd7ce08",
-    measurementId: "G-B2HVJDG14W"
+    apiKey: "AIzaSyDXpVBleczOdrsPKhSYXj_POeNJlaFYakg",
+    authDomain: "registrappduocv3.firebaseapp.com",
+    projectId: "registrappduocv3",
+    storageBucket: "registrappduocv3.appspot.com",
+    messagingSenderId: "461711466911",
+    appId: "1:461711466911:web:edf8cea0bd668bc0f4ddaa",
+    measurementId: "G-BHHLVSS335"
   },
 
   baseUrl: 'https://rickandmortyapi.com/api/',

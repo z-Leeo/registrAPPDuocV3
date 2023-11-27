@@ -17,7 +17,12 @@ export class LoginPage implements OnInit {
   // password:any
   // contact:any
 
-  constructor(private toastController: ToastController, private alertController: AlertController, private loadingController: LoadingController, private authService: AuthServiceService, private router: Router, public formBuilder: FormBuilder) { }
+  constructor(private toastController: ToastController, 
+              private alertController: AlertController, 
+              private loadingController: LoadingController, 
+              private authService: AuthServiceService, 
+              private router: Router, 
+              public formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({

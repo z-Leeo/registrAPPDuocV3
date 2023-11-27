@@ -3,6 +3,8 @@ import {Router} from '@angular/router';
 import { ResetForm } from '../model/reset-form';
 import { Subscription } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
+import { AsistenciaService } from 'src/app/service/asistencia.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-asistencia',
@@ -13,6 +15,8 @@ export class AsistenciaPage implements OnInit {
 
   public alertButtons = ['OK'];
 
+  formularioA: FormGroup
+
   objResetForm: ResetForm = new ResetForm();
   nombre: string = '';
   apellido: string = '';
@@ -20,7 +24,17 @@ export class AsistenciaPage implements OnInit {
   rut: string = '';
   
   constructor(private loadingCtrl : LoadingController,
-              private router: Router,) { }
+              private router: Router,
+              private asistenciaService : AsistenciaService) { 
+
+
+                this.formularioA = new FormGroup({
+                  nombre : new FormControl(),
+                  apellido: new FormControl(),
+                  NE:new FormControl(),
+                  rut: new FormControl()
+                })
+              }
 
   ngOnInit() {
   }
@@ -33,8 +47,11 @@ export class AsistenciaPage implements OnInit {
     this.rut= '';
   }
 
-  continuar(){
+  async continuar(){
     this.router.navigate(['/home'])
+    console.log(this.formularioA.value)
+    const response = await this.asistenciaService.addAsist(this.formularioA.value);
+    console.log(response)
   }
 
   async cerrar(){
