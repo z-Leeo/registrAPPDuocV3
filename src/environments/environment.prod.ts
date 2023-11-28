@@ -1,3 +1,4 @@
+
 export const environment = {
   production: true,
     firebaseConfig : {
@@ -10,5 +11,6 @@ export const environment = {
       measurementId: "G-BHHLVSS335"
     },
   baseUrl: 'https://rickandmortyapi.com/api/',
-  characters: 'character/'
+  character: 'character/',
 };
+
