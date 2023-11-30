@@ -13,7 +13,8 @@ import { environment } from 'src/environments/environment';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
             AngularFireModule,
             AngularFireModule.initializeApp(environment.firebaseConfig),
     ReactiveFormsModule,
-    IonicModule.forRoot(), AppRoutingModule, provideFirebaseApp(() => initializeApp({"projectId":"registrappduocv3","appId":"1:461711466911:web:edf8cea0bd668bc0f4ddaa","storageBucket":"registrappduocv3.appspot.com","apiKey":"AIzaSyDXpVBleczOdrsPKhSYXj_POeNJlaFYakg","authDomain":"registrappduocv3.firebaseapp.com","messagingSenderId":"461711466911","measurementId":"G-BHHLVSS335"})), provideFirestore(() => getFirestore())],
+    IonicModule.forRoot(), AppRoutingModule, provideFirebaseApp(() => initializeApp({"projectId":"registrappduocv3","appId":"1:461711466911:web:edf8cea0bd668bc0f4ddaa","storageBucket":"registrappduocv3.appspot.com","apiKey":"AIzaSyDXpVBleczOdrsPKhSYXj_POeNJlaFYakg","authDomain":"registrappduocv3.firebaseapp.com","messagingSenderId":"461711466911","measurementId":"G-BHHLVSS335"})), provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),],
   providers: [  { provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, ],
   bootstrap: [AppComponent],
 })

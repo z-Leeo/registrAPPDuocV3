@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header  [style.visibility]="content_visibility">
   <ion-toolbar color="primary">
     <ion-title slot="start">
       Inicio
@@ -9,30 +9,47 @@
 
 <div class="contenedorMain">
 
-  <ion-content [fullscreen]="true" >
-    <div id="container">
-      <h1>Bienvenido</h1>
-      <strong>{{email}}</strong>
-    </div>
+  <ion-content >
+  
 
-    <ion-grid >
-      <ion-row class="row">
-        <ion-content class="ion-padding">
-          <ion-button expand="full" (click)="scanQRCode()">Scan QR Code</ion-button>
-        </ion-content>
-        
-      </ion-row >
-      <ion-row class="row">
-        <ion-col>
-          {{code}}
-          <ion-button [routerLink]="['/intro']">Rick & Morty API</ion-button>
-        </ion-col>
-      </ion-row>
-      <ion-row class="row">
-        <ion-col>
-          <ion-button [routerLink]="['/asistencia']">Registrar Asistencia</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+
+          <ion-content [style.visibility]="content_visibility">
+
+            <div id="container">
+              <h1>Bienvenido</h1>
+              <strong>{{email}}</strong>
+            </div>
+
+            <ion-card class="ion-text-center">
+              <ion-card-content>
+                <qrcode 
+                  [qrdata]="qrCodeString" 
+                  [width]="256" 
+                  [errorCorrectionLevel]="'M'">
+                </qrcode>
+              </ion-card-content>
+            </ion-card>
+          
+            <ion-button 
+              expand="block" 
+              class="ion-margin" 
+              (click)="startScan()">
+              Scanear Codigo QR
+            </ion-button>
+          
+            <ion-item *ngIf="scannedResult">
+              <ion-label class="ion-text-wrap">Scanned Result: {{scannedResult}}</ion-label>
+            </ion-item>
+
+            <div class="contenedor2">
+              <ion-button [routerLink]="['/intro']">Rick & Morty API</ion-button>
+              <ion-button [routerLink]="['/asistencia']">Registrar Asistencia</ion-button>
+              </div>
+            
+          </ion-content>
+          
+         
   </ion-content>
+
+
 </div>
