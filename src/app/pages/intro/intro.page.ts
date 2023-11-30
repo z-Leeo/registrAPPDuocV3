@@ -14,7 +14,7 @@ export class IntroPage implements OnInit {
 
     setTimeout(() => {
       this.router.navigateByUrl('/rick')
-    },1500);
+    },1000);
 
   }
 

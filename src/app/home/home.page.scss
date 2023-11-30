@@ -41,6 +41,17 @@ body.scanner-active {
 }
 
 .contenedor2{
+  width: auto;
   margin: auto;
-  margin-bottom: 100px;
+  text-align: center;
+}
+
+.cardqr{
+  box-shadow: 20px 10px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.cardV{
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.5);
+  margin: 25px;
 }

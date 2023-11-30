@@ -21,7 +21,7 @@
             </div>
 
             <ion-card class="ion-text-center">
-              <ion-card-content>
+              <ion-card-content class="cardqr">
                 <qrcode 
                   [qrdata]="qrCodeString" 
                   [width]="256" 
@@ -38,7 +38,7 @@
             </ion-button>
           
             <ion-item *ngIf="scannedResult">
-              <ion-label class="ion-text-wrap">Scanned Result: {{scannedResult}}</ion-label>
+              <ion-label class="ion-text-wrap">Resultado del Scan: {{scannedResult}}</ion-label>
             </ion-item>
 
             <div class="contenedor2">
@@ -46,6 +46,14 @@
               <ion-button [routerLink]="['/asistencia']">Registrar Asistencia</ion-button>
               </div>
             
+
+
+              <ion-card-content class="cardV" style="text-align: center;">
+                <p>Valora nuestra aplicación de Registro de asistencia de DuocUC</p>
+                <ion-icon name="arrow-forward"></ion-icon><a href="https://docs.google.com/forms/d/e/1FAIpQLSdASeHVLOu9eUHB5T08AxDy0mdT1hIF5IQJ848oDKsaK6Bcig/viewform" style="text-decoration: none;"><ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></a>
+              </ion-card-content>
+
           </ion-content>
           
          

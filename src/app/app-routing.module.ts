@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
+import { AsistenciaPage } from './pages/asistencia/asistencia.page';
+import { HomePage } from './home/home.page';
+import { ConfirmationPage } from './pages/confirmation/confirmation.page';
+import { RickPage } from './pages/rick/rick.page';
+import { DetallePersonajePage } from './pages/detalle-personaje/detalle-personaje.page';
+import { IntroPage } from './pages/intro/intro.page';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'home',canActivate: [AuthGuard], component: HomePage,
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
@@ -32,23 +39,23 @@ const routes: Routes = [
     loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
   },
   {
-    path: 'confirmation',
-    loadChildren: () => import('./pages/confirmation/confirmation.module').then( m => m.ConfirmationPageModule)
+    path: 'confirmation',canActivate: [AuthGuard], component: ConfirmationPage,
+    loadChildren: () => import('./pages/confirmation/confirmation.module').then( m => m.ConfirmationPageModule),
   },
   {
-    path: 'rick',
+    path: 'rick',canActivate: [AuthGuard],
     loadChildren: () => import('./pages/rick/rick.module').then( m => m.RickPageModule)
   },
   {
-    path: 'detalle-personaje/:id',
+    path: 'detalle-personaje/:id',canActivate: [AuthGuard],
     loadChildren: () => import('./pages/detalle-personaje/detalle-personaje.module').then( m => m.DetallePersonajePageModule)
   },
   {
-    path: 'intro',
+    path: 'intro',canActivate: [AuthGuard], component: IntroPage,
     loadChildren: () => import('./pages/intro/intro.module').then( m => m.IntroPageModule)
   },
   {
-    path: 'asistencia',
+    path: 'asistencia',canActivate: [AuthGuard], component: AsistenciaPage,
     loadChildren: () => import('./pages/asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
   },
 

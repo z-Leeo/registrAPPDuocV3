@@ -1,84 +1,115 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { Observable, of } from 'rxjs';
-import { Router } from '@angular/router';
+import { AngularFireAuth, } from '@angular/fire/compat/auth';
+import { GoogleAuthProvider, getAuth, signInWithPopup, } from "firebase/auth";
+import { Observable, of  } from 'rxjs';
+import { async } from 'rxjs';
 import firebase from 'firebase/compat/app';
-import { Auth } from 'firebase/auth';
-import { getAuth } from 'firebase/auth';
+import {
+  CollectionReference,
+  DocumentData,
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from '@firebase/firestore';
+import { Firestore, collectionData, docData } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-  private auth: Auth; // Agrega una propiedad privada para almacenar el objeto Auth
+  user$: Observable<firebase.User>;
 
-  constructor(public ngFireAuth: AngularFireAuth, private router: Router) {
-    this.auth = getAuth(); // Inicializa el objeto Auth
+  constructor(private ngFireAuth: AngularFireAuth) {
+    this.user$ = ngFireAuth.authState;
   }
 
-  getAuthToken(): Observable<boolean> {
+  getAuth(){
+    return getAuth();
+  }
+
+  getAuthToken():Observable<boolean>{
     return of(true);
   }
 
   async registerUser(email: string, password: string, name: string) {
-    return await this.ngFireAuth.createUserWithEmailAndPassword(email, password);
+    return await this.ngFireAuth.createUserWithEmailAndPassword(email, password)
+
   }
 
   async loginUser(email: string, password: string) {
     return await this.ngFireAuth.signInWithEmailAndPassword(email, password);
+
   }
 
   async resetPassword(email: string) {
     return await this.ngFireAuth.sendPasswordResetEmail(email);
-  }
 
+  }
   async getProfile() {
-    return await this.ngFireAuth.currentUser;
+    return await this.ngFireAuth.currentUser
   }
 
   async signOut() {
-    await this.ngFireAuth.signOut();
-    // Redirige a la página de inicio de sesión después del cierre de sesión
-    this.router.navigate(['/login']);
+    return await this.ngFireAuth.signOut();
   }
-
   async AuthLogin(provider: any) {
+
     try {
-      const result = await signInWithPopup(this.auth, provider); // Usa el objeto Auth en lugar de AngularFireAuth
-      // Puedes redirigir a la página deseada después del inicio de sesión exitoso
-      this.router.navigate(['/dashboard']);
-      // También puedes manejar la información del usuario aquí llamando a un método SetUserData(result.user);
+      const result = await this.ngFireAuth.signInWithPopup(provider);
+      //  this.ngZone.run(() => {
+      //    this.router.navigate(['dashboard']);
+      //  });
+      //  this.SetUserData(result.user);
     } catch (error) {
       window.alert(error);
     }
+
   }
 
   async GoogleAuth() {
-    const provider = new GoogleAuthProvider();
-    try {
-      const result = await signInWithPopup(this.auth, provider); // Usa el objeto Auth en lugar de AngularFireAuth
-      // Puedes redirigir a la página deseada después del inicio de sesión exitoso
-      this.router.navigate(['/dashboard']);
-      // También puedes manejar la información del usuario aquí llamando a un método SetUserData(result.user);
-    } catch (error) {
-      window.alert(error);
-    }
+    const auth = getAuth();
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth()
+  .signInWithPopup(provider)
+  .then((result) => {
+    console.log(result);
+    
+    /** @type {firebase.auth.OAuthCredential} */
+    var credential = result.credential;
+
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    // var token = credential?.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // IdP data available in result.additionalUserInfo.profile.
+      // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
   }
 
   async signInWithPhoneNumber(phoneNumber: string) {
-    const appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-    try {
-      const confirmationResult = await this.ngFireAuth.signInWithPhoneNumber(phoneNumber, appVerifier);
-      const verificationCode = window.prompt(phoneNumber + 'Enter the verification code');
 
-      if (verificationCode) {
-        const userCredential = await confirmationResult.confirm(verificationCode);
-        // El usuario ahora está autenticado
-        console.log(userCredential.user);
-      }
-    } catch (error) {
-      window.alert(error);
+    const appVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    const confirmationResult = await this.ngFireAuth.signInWithPhoneNumber(phoneNumber, appVerifier)
+    const verificationCode = window.prompt(phoneNumber + 'Enter the verification code');
+
+    if (verificationCode) {
+      const userCredential = await confirmationResult.confirm(verificationCode);
+      // User is now signed in
+      console.log(userCredential.user);
     }
   }
+
+
+
 }
